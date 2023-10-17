@@ -1,9 +1,96 @@
-body{
-  background-color: darkslategrey;
+body {
+  background-color:rgb(50, 54, 67) ;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-div {
+  width: 600px; 
+  height: 400px; 
+  background-color: rgb(96, 100, 112); 
+  top: 50%;
+  left: 50%;
+  border: 3px solid #121111;
+  border-radius: 11px;
+
+}
+
+.tittle{
+  margin-top: 3%;
+  height: 10%;
+  color: rgb(255, 87, 12);
+  justify-content: center;
+  align-items: center;
+  font-size:28px;
+  text-align:center;
 }
 
 
-.cadre{
-  background-color: aquamarine;
+form {
 
+  height: 65%;
+  margin: 0 auto;
+  width: 400px;
+  padding: 1em;
+  border: 2px solid #121111;
+  border-radius: 11px;
+  
+}
+
+ul {
+  
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user{
+  font-size: 24px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+  margin-top: 20%;
+}
+
+.pass{
+  font-size: 24px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+  margin-top: 8%;
+}
+
+
+.passlabel{
+  margin-top: 30%;
+  margin-left:3.5px ;
+}
+
+.userlabel{
+  margin-top: 10%;
+}
+
+
+input{
+
+  height: 25px;
+  border: 2px solid #121111;
+}
+
+.submit{
+  height: 40px;
+  width: 70px;
+  background-color: rgb(255, 87, 12);
+  margin-top: 10%;
+  margin-left: 80%;
+  border: 2px solid #121111;
+  border-radius: 7px;
+  
+}
+
+.submit:hover {
+  background-color: rgb(242, 113, 53);
+  color: black;
 }

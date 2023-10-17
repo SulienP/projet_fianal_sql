@@ -7,9 +7,24 @@
   <title>LaCochonaille/login</title>
 </head>
 <body>
-  <div class=cadre>
-    <label for="uname"><b>Username</b></label>
-  </div>
+  <div class="center-div">
+    <div tittle class="tittle"><bold>La Cochonaille</bold></div>
+    
+    <form class="form" action="connexion" method="post">
+      <ul>
+        <li class="user">
+          <label class="userlabel"><bold>Username:</bold></label>
+          <input type="text" id="name" name="user_name" />
+        </li>
+        <li class="pass">
+          <label class="passlabel" for="password"><bold>Password:</bold></label>
+          <input type="pass" id="pass" name="user_password" />
+        </li>
+        
+      </ul>
+      <button class="submit">Submit</button>
+    </form>
+    </div>
   
 </body>
 </html>
