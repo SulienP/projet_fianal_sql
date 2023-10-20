@@ -1,4 +1,4 @@
-package sqlback
+package sql
 
 import (
 	"fmt"
@@ -8,12 +8,10 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+var connectedUser []string
 
 func Server() {
-	// http.HandleFunc("/home", Home)
-	// http.HandleFunc("/create", CreateAccount)
-	// http.HandleFunc("/", ConnexionAccount)
-	// http.HandleFunc("/profil", Profil)
+	
 	fs := http.FileServer(http.Dir("assets"))
 	http.Handle("/assets/", http.StripPrefix("/assets", fs))
 

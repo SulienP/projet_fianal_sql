@@ -1,7 +1,8 @@
 package main
 
-import sqlback "../sqlBack"
+import sql "sql/src"
+
+
 func main() {
- 
-	sqlback.Server()
+	sql.Server()
 }
