@@ -8,15 +8,13 @@ import (
 	_ "github.com/mattn/go-sqlite3" // Import du pilote SQLite
 )
 
-type homePage struct {
-	Hello string
-}
+
 
 func Home(w http.ResponseWriter, r *http.Request) {
 tmpl := template.Must(template.ParseFiles("templates/Home.html"))
 
-	data := homePage{
-		Hello: "Hello, World!", // Exemple de données pour votre modèle
+	data := Employees{
+		
 	}
 
 	err := tmpl.Execute(w, data)

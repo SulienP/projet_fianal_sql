@@ -9,7 +9,7 @@ import (
 )
 
 func ServerWeb() {
-	http.HandleFunc("/", Home) 
+	http.HandleFunc("/", Home)
 	fs := http.FileServer(http.Dir("assets"))
 	http.Handle("/assets/", http.StripPrefix("/assets", fs))
 
