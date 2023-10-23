@@ -3,6 +3,7 @@ package sql
 import (
 	"database/sql"
 	"fmt"
+	"log"
 )
 
 func getDataBase() *sql.DB {
@@ -14,25 +15,25 @@ func getDataBase() *sql.DB {
 	return db
 }
 
-func getAllEmployees() {
+func getEmails() []string {
 	db := getDataBase()
 
-	defer db.Close()
-
-	rows, err := db.Query("SELECT email FROM employees")
-	if err != nil {
-		fmt.Println(err)
-		return
+	rows, errQuery := db.Query("SELECT email FROM employees")
+	if errQuery != nil {
+		log.Fatalln(errQuery)
 	}
-	defer rows.Close()
 
-	var email string
+	defer rows.Close() // Assurez-vous de fermer les lignes après les avoir utilisées
+	var emails []string
+
 	for rows.Next() {
+		var email string
 		err := rows.Scan(&email)
 		if err != nil {
-			fmt.Println(err)
-			return
+			log.Fatal(err)
 		}
-		fmt.Println(email)
+		emails = append(emails, email) // Ajoutez chaque email à la liste des emails
 	}
+
+	return emails
 }

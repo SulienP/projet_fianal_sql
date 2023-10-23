@@ -7,6 +7,8 @@
     <link href="../static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    Server on!
+    {{ range $element := .Employees }}
+        {{ $element }}
+    {{ end }}
 </body>
 </html>
