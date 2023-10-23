@@ -6,32 +6,33 @@ import (
 )
 
 func getDataBase() *sql.DB {
-	db, errSQLOpen := sql.Open("sqlite3", "compagny.db")
+	db, errSQLOpen := sql.Open("sqlite3", "public/compagny.db")
 	if errSQLOpen != nil {
 		fmt.Println(errSQLOpen)
 	}
-	defer db.Close()
 
 	return db
 }
 
 func getAllEmployees() {
-	rows, err := db.Query("SELECT id, nom, age FROM ma_table")
+	db := getDataBase()
+
+	defer db.Close()
+
+	rows, err := db.Query("SELECT email FROM employees")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	defer rows.Close()
 
-	var id int
-	var nom string
-	var age int
+	var email string
 	for rows.Next() {
-		err := rows.Scan(&id, &nom, &age)
+		err := rows.Scan(&email)
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
-		fmt.Println(id, nom, age)
+		fmt.Println(email)
 	}
 }

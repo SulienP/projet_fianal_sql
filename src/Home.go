@@ -12,8 +12,8 @@ type homePage struct {
 	Hello string
 }
 
-func home(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("/templates/Home.html"))
+func Home(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("templates/Home.html"))
 
 	data := homePage{
 		Hello: "Hello, World!", // Exemple de données pour votre modèle
@@ -23,4 +23,6 @@ func home(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	getAllEmployees()
 }
