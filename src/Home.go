@@ -7,7 +7,6 @@ import (
 	"strconv"
 )
 
-
 type EmployeeData struct {
 	PostID      int
 	FirstName   string
@@ -27,8 +26,8 @@ var employeData []EmployeeData
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/home.html"))
-<<<<<<< HEAD
-    var namePost string
+
+	var namePost string
 	if r.Method == http.MethodPost {
 		PostID := r.FormValue("postId")
 		FirstName := r.FormValue("firstName")
@@ -64,43 +63,18 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	employees := getAllEmployees()
+	currentData := getAllEmployees()
 	if r.Method == http.MethodPost {
 		idEmploye := r.FormValue("idEmploye")
 		if idEmploye != "" {
 			id, _ := strconv.Atoi(idEmploye)
 
 			namePost := getPost(id)
-            employees[0].PostName = namePost
+			currentData[0].PostName = namePost
 		}
 	}
-	err := tmpl.Execute(w, employees)
-	if err != nil {
-		log.Fatal(err)
-	}
-    
-=======
-
-	// Get the list of employees
-	//currentData := getEmployees()
-	currentData := getColleague("Employees")
-
-	/*
-		if r.Method == http.MethodPost {
-			idEmployee := r.FormValue("employee")
-			idManager := r.FormValue("employeeManager")
-			idHire := r.FormValue("hire")
-			idIncrease := r.FormValue("increase")
-			fmt.Println(idEmployee, idManager, idHire, idIncrease)
-
-			// Handle form submissions here if needed
-		}
-	*/
-
-	// Pass the list of employees to the template
 	err := tmpl.Execute(w, currentData)
 	if err != nil {
 		log.Fatal(err)
 	}
->>>>>>> 579b9947785c0b78517dc92661b688dd71ba0009
 }
