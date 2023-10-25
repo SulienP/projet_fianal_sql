@@ -14,12 +14,13 @@ type Employees struct {
 	LastName    string
 	Email       string
 	Password    string
-	IsPresent   bool
+	IsPresent   string
 	Salary      int
 	Schedule    string
 	BreackTimes string
 	DateHire    string
 	EndContract string
+	PostName string
 }
 
 type CurrentEmployees struct {
