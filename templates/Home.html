@@ -5,65 +5,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compagny</title>
-    <link href="../static/css/home.css" rel="stylesheet" type="text/css">
+    <link href="../static/home.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
-<div class="profil">
-    <div class="debut">
-        <img class="imgprofil" src="/projet_fianal_sql/pictures/icons8-utilisateur-50.png">
-        <p class="poste">Directeur</p>
-    </div>
+    <div class="profil">
+        <div class="debut">
+            <img class="imgprofil" src="/projet_fianal_sql/pictures/icons8-utilisateur-50.png">
+            <p class="poste">Directeur</p>
+        </div>
 
-    <p class="userinfo">Anthony POUCHARD</p>
-    <a class="connect" href="login.html">Disconnect</a>
-</div>
-
-<div class="back">
-    <div class="name">
-        <p>{{ range $i , $employee := . }}
-         <form method="post">
-            <button type="submit" class="aname" id="idEmploye" name="idEmploye" value="{{ $employee.EmployeeId }}">
-                    {{ $employee.FirstName }} {{ $employee.LastName }}
-                </button>
-    </form>
-        {{ end }}
-
+        <p class="userinfo">Anthony POUCHARD</p>
+        <a class="connect" href="login.html">Disconnect</a>
     </div>
    
-</div>
-    <div class="valuToShow">
-        {{ range $i , $employee := . }}
-    
-        {{ if not (eq $employee.PostName "") }}
-        <p>Nom du poste : {{ $employee.PostName }}</p>
-        {{ end }}
-        {{ end }}
+
     </div>
- 
-<div class="addEmployee">
+    <div class="back">
+        <div class="name">
+            <p>
+                {{ range $i , $employee := .EmployeesList }}
+                
+            <form method="post">
+                <button type="submit" class="aname" id="idEmploye" name="idEmploye" value="{{ $employee.EmployeeId }}">
+                    {{ $employee.FirstName }} {{ $employee.LastName }}
+                </button>
+            </form>
+            {{ end }}
+            </p>
+        </div>
   
-    <form class="employeeForm" id="form" method="post">
-        <input type="text" name="postId" placeholder="Post ID">
-        <input type="text" name="firstName" placeholder="First Name">
-        <input type="text" name="lastName" placeholder="Last Name">
-        <input type="text" name="email" placeholder="Email">
-        <input type="text" name="password" placeholder="Password">
-        <input type="text" name="isPresent" placeholder="Is Present">
-        <input type="int" name="salary" placeholder="Salary">
-        <input type="text" name="shcedule" placeholder="Schedule">
-        <input type="text" name="breakTimes" placeholder="Break Times">
-        <input type="text" name="dateHire" placeholder="Date Hire">
-        <input type="text" name="endContract" placeholder="End Contract">
-        <input class="addButton" type="submit" id="add" value="Add Employee">
-    </form>
-</div>
+    </div>
+    <div class="valuToShow">
+        LastName: {{ .OneEmployee.FirstName}} <br>
+        FirstName: {{ .OneEmployee.LastName}}<br>
+        Salary: {{ .OneEmployee.Salary}}<br>
+        Email: {{ .OneEmployee.Email}}<br>
+        start date: {{ .OneEmployee.DateHire}}<br>
+        end date: {{.OneEmployee.EndContract}}<br>
+        manager : {{ .Manager}}<br>
+        departement : {{ .Departement}}<br>
+    </div>
+    <div class="addEmployee">
+
+        <form class="employeeForm" id="form" method="post">
+            <input type="text" name="postId" placeholder="Post ID">
+            <input type="text" name="firstName" placeholder="First Name">
+            <input type="text" name="lastName" placeholder="Last Name">
+            <input type="text" name="email" placeholder="Email">
+            <input type="text" name="password" placeholder="Password">
+            <input type="text" name="isPresent" placeholder="Is Present">
+            <input type="int" name="salary" placeholder="Salary">
+            <input type="text" name="shcedule" placeholder="Schedule">
+            <input type="text" name="breakTimes" placeholder="Break Times">
+            <input type="text" name="dateHire" placeholder="Date Hire">
+            <input type="text" name="endContract" placeholder="End Contract">
+            <input class="addButton" type="submit" id="add" value="Add Employee">
+        </form>
+    </div>
 </body>
 
-  
-</body>
-
-
-  
 </html>

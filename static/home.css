@@ -96,9 +96,11 @@ body {
 }
 
 .valuToShow {
-  max-height: 100%;
+  margin-top: 1%;
+  max-height: 90%;
   background-color: rgb(96, 100, 112);
   border: 3px solid #121111;
+  color:rgb(255, 87, 12);
   width: 25%;
   height: 100%;
   overflow: auto;

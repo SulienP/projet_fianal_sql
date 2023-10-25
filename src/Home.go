@@ -1,6 +1,7 @@
 package sql
 
 import (
+	// "fmt"
 	"fmt"
 	"html/template"
 	"log"
@@ -8,76 +9,80 @@ import (
 	"strconv"
 )
 
-
 type EmployeeData struct {
-	PostID      int
-	FirstName   string
-	LastName    string
-	Email       string
-	Password    string
-	IsPresent   string
-	Salary      int
-	Schedule    string
-	BreakTimes  string
-	DateHire    string
-	EndContract string
-	PostName    string
-}
+    EmployeesList   []Employees
+    OneEmployee     Employees
+    PostName        string
+	Manager 		string
+	Departement	string
+} 
 
-var employeData []EmployeeData
+var employeData EmployeeData
 
-func Home(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("templates/home.html"))
-    var namePost string
+func Home(w http.ResponseWriter, r *http.Request) {	
+	    tmpl := template.Must(template.ParseFiles("templates/home.html"))
+
 	if r.Method == http.MethodPost {
-		PostID := r.FormValue("postId")
-		FirstName := r.FormValue("firstName")
-		LastName := r.FormValue("lastName")
-		Email := r.FormValue("email")
-		Password := r.FormValue("password")
-		IsPresent := r.FormValue("isPresent")
-		Salary := r.FormValue("salary")
-		Schedule := r.FormValue("schedule")
-		BreakTimes := r.FormValue("breakTimes")
-		DateHire := r.FormValue("dateHire")
-		EndContract := r.FormValue("endContract")
-		value, _ := strconv.Atoi(PostID)
-		salary, _ := strconv.Atoi(Salary)
-		employeeData := EmployeeData{
-			PostID:      value,
-			FirstName:   FirstName,
-			LastName:    LastName,
-			Email:       Email,
-			Password:    Password,
-			IsPresent:   IsPresent,
-			Salary:      salary,
-			Schedule:    Schedule,
-			BreakTimes:  BreakTimes,
-			DateHire:    DateHire,
-			EndContract: EndContract,
-			PostName:    namePost,
-		}
+			if r.Method == http.MethodPost {
+        PostID := r.FormValue("postId")
+        FirstName := r.FormValue("firstName")
+        LastName := r.FormValue("lastName")
+        Email := r.FormValue("email")
+        Password := r.FormValue("password")
+        IsPresent := r.FormValue("isPresent")
+        Salary := r.FormValue("salary")
+        Schedule := r.FormValue("schedule")
+        BreakTimes := r.FormValue("breakTimes")
+        DateHire := r.FormValue("dateHire")
+        EndContract := r.FormValue("endContract")
+        value, _ := strconv.Atoi(PostID)
+        salary, _ := strconv.Atoi(Salary)
+        employeeData := Employees{
+             
+            PostId:       value,
+            FirstName:    FirstName,
+            LastName:     LastName,
+            Email:        Email,
+            Password:     Password,
+            IsPresent:    IsPresent,
+            Salary:       salary,
+            Schedule:     Schedule,
+            BreackTimes:  BreakTimes,
+            DateHire:     DateHire,
+            EndContract:  EndContract,
+        }
 
-		employeData = append(employeData, employeeData)
-		if employeData[0].FirstName != "" {
-			addEmployees(employeData[0].PostID, employeData[0].FirstName, employeData[0].LastName, employeData[0].Email, employeData[0].Password, employeData[0].IsPresent, employeData[0].Salary, employeData[0].Schedule, employeData[0].BreakTimes, employeData[0].DateHire, employeData[0].EndContract)
-		}
-	}
+        if employeeData.FirstName != "" {
+            addEmployees(employeeData.PostId, employeeData.FirstName, employeeData.LastName, employeeData.Email, employeeData.Password, employeeData.IsPresent, employeeData.Salary, employeeData.Schedule, employeeData.BreackTimes, employeeData.DateHire, employeeData.EndContract)
+        }
+    }
 
-	employees := getAllEmployees()
-	if r.Method == http.MethodPost {
-		idEmploye := r.FormValue("idEmploye")
+    employeesList := getAllEmployees()
+    employeData.EmployeesList = employeesList
+
+    if r.Method == http.MethodPost {
+        idEmploye := r.FormValue("idEmploye")
+        id := 0
 		fmt.Println(idEmploye)
-		if idEmploye != "" {
-			id, _ := strconv.Atoi(idEmploye)
+        if idEmploye != "" {
+            id, _ = strconv.Atoi(idEmploye)
+            oneEmployee := getEmployeData(id)
+			getManager := getManagers((id))
+			getDepartement := getDepartementNames(id)
+			fmt.Println(getManager)
+            namePost := getPost(id)
+            employeData.OneEmployee = oneEmployee
+            employeData.PostName = namePost
+			employeData.Manager = getManager
+			employeData.Departement = getDepartement
+			fmt.Println(employeData.Manager)
+        }
+    }
 
-			namePost := getPost(id)
-            employees[0].PostName = namePost
-		}
-	}
-	err := tmpl.Execute(w, employees)
-	if err != nil {
-		log.Fatal(err)
-	}
-    
+    err := tmpl.Execute(w, employeData)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+}
 }
