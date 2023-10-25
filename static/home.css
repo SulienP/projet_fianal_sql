@@ -96,7 +96,8 @@ body {
 }
 
 .valuToShow {
-  margin-top: 1%;
+  margin-top: 1%
+  ;
   max-height: 90%;
   background-color: rgb(96, 100, 112);
   border: 3px solid #121111;
@@ -107,7 +108,25 @@ body {
   float: right;
 }
 
+.addButton,
+input[type="text"],
+input[type="email"],
+input[type="int"] {
+  background-color:rgb(255, 87, 12);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
 
+.addButton:hover,
+input[type="text"],
+input[type="email"],
+input[type="int"] {
+  background-color: rgb(255, 87, 12);
+}
 .aname{
   display: block;
   margin-top: 1%;
