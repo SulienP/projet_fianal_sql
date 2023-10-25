@@ -1,8 +1,12 @@
 package sql
 
 type Departements struct {
-	DepartementId int
+	DepartementIdDepartements int
 	ServiceName   string
+	StaffNumberDepartements   int
+	ManagerIdDepartements     int
+	DepartementId int
+	ServiceNameDepartement   string
 	StaffNumber   int
 	ManagerId     int
 }
@@ -14,7 +18,7 @@ type Employees struct {
 	LastName    string
 	Email       string
 	Password    string
-	IsPresent   bool
+	IsPresent   string
 	Salary      int
 	Schedule    string
 	BreackTimes string
@@ -23,12 +27,16 @@ type Employees struct {
 }
 
 type Managers struct {
+	ManagerIdFromManager  int
+	EmployeeIdFromManage int
 	ManagerId  int
 	EmployeeId int
 }
 
 type Posts struct {
-	PostId        int
+	PostIdFromPosts        int
+	PostNameFromPost     string
+	ManagerIdFromPosts    int
 	DepartementId int
 	PostName      string
 	ManagerId     int

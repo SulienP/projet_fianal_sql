@@ -2,38 +2,29 @@ package sql
 
 import (
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
-
-	_ "github.com/mattn/go-sqlite3" // Import du pilote SQLite
+	"text/template"
 )
 
-
-
 func Home(w http.ResponseWriter, r *http.Request) {
-tmpl := template.Must(template.ParseFiles("templates/Home.html"))
+	tmpl := template.Must(template.ParseFiles("templates/Home.html"))
 
-	data := Employees{}
+	// Get the list of employees
+	employees := getAllEmployees()
 
-	
-	if r.Method == http.MethodPost{
+	if r.Method == http.MethodPost {
 		idFormulaireEmployee := r.FormValue("employee")
-		
-		idFormulaireManager := r.FormValue("employeeManager") 
-		idFormulaireHIre := r.FormValue("hire")
+		idFormulaireManager := r.FormValue("employeeManager")
+		idFormulaireHire := r.FormValue("hire")
 		idFormulaireIncrease := r.FormValue("increase")
-		print(idFormulaireEmployee,idFormulaireHIre,idFormulaireManager,idFormulaireIncrease)
-		postId := idFormulaireEmployee[0]
-		isPresent := idFormulaireEmployee[1]
-		allEmploye := RecuperationEmployee(postId  ,  isPresent )
-	allManager := RecuperationManager( managerId, employeeId)
-	allPost := RecuperationPost( postId )
-	allDepartemnts := RecuperationDepartement(id )
-	fmt.Println(allEmploye, allManager, allPost, allDepartemntsg)
+		fmt.Println(idFormulaireEmployee, idFormulaireHire, idFormulaireManager, idFormulaireIncrease)
+
+		// Handle form submissions here if needed
 	}
-	
-	err := tmpl.Execute(w, data)
+
+	// Pass the list of employees to the template
+	err := tmpl.Execute(w, employees)
 	if err != nil {
 		log.Fatal(err)
 	}
