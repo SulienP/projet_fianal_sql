@@ -1,41 +1,31 @@
 package sql
 
 import (
-	"html/template"
+	"fmt"
 	"log"
 	"net/http"
-
-	_ "github.com/mattn/go-sqlite3" // Import du pilote SQLite
+	"text/template"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/home.html"))
 
-	data := Employees{}
-	//employees := getEmails()
+	// Get the list of employees
+	employees := getAllEmployees()
 
 	if r.Method == http.MethodPost {
 		idEmployee := r.FormValue("employee")
-		idManager := r.FormValue("manager")
+		idManager := r.FormValue("employeeManager")
 		idHire := r.FormValue("hire")
 		idIncrease := r.FormValue("increase")
-		print(idEmployee, idManager, idHire, idIncrease)
+		fmt.Println(idEmployee, idManager, idHire, idIncrease)
 
-		/*
-			postId := idEmployee[0]
-			isPresent := idEmployee[1]
-			employees := recoveryEmployees(postId, isPresent)
-			managers := recoveryManagers(managerId, employeeId)
-			posts := recoveryPosts(postId)
-			departemnts := recoveryDepartements(id)
-			fmt.Println(employees, managers, posts, departemnts)
-		*/
+		// Handle form submissions here if needed
 	}
 
-	err := tmpl.Execute(w, data)
+	// Pass the list of employees to the template
+	err := tmpl.Execute(w, employees)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	//tmpl.Execute(w, struct{ Employees []string }{Employees: employees})
 }
