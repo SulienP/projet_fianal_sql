@@ -10,8 +10,8 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/home.html"))
 
 	// Get the list of employees
-	//currentData := getAllEmployees()
-	currentData := getEmployees()
+	//currentData := getEmployees()
+	currentData := getColleague("Administration")
 
 	/*
 		if r.Method == http.MethodPost {

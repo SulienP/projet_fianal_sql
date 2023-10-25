@@ -40,12 +40,12 @@ func getEmployees() []Employees {
 	return employees
 }
 
-func getSubordinates(idManager string) []Employees {
+func getColleague(nameService string) []Employees {
 	db := getDataBase()
 
 	defer db.Close()
 
-	rows, errQuery := db.Query("SELECT firstName, lastName FROM employees INNER JOIN posts ON employees.postId = posts.postId WHERE posts.managerId = " + idManager)
+	rows, errQuery := db.Query("SELECT employees.firstName, employees.lastName FROM employees INNER JOIN departements ON employees.postId = departements.departementId WHERE departements.serviceName = '" + nameService + "'")
 	if errQuery != nil {
 		log.Fatal(errQuery)
 	}
@@ -55,7 +55,7 @@ func getSubordinates(idManager string) []Employees {
 
 	for rows.Next() {
 		var employee Employees
-		err := rows.Scan(&employee.EmployeeId, &employee.PostId, &employee.FirstName, &employee.LastName, &employee.Email, &employee.Password, &employee.IsPresent, &employee.Salary, &employee.Schedule, &employee.BreackTimes, &employee.DateHire, &employee.EndContract)
+		err := rows.Scan(&employee.FirstName, &employee.LastName)
 		if err != nil {
 			log.Fatal(err)
 		}

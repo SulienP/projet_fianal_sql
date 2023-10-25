@@ -9,7 +9,8 @@
     <body>
         {{ range $i , $employee := . }}
             <p>
-                {{ $employee.Email }}
+                {{ $employee.FirstName }}
+                {{ $employee.LastName }}
             </p>
         {{ end }}
     </body>
