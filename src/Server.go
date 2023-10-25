@@ -9,9 +9,11 @@ import (
 )
 
 func ServerWeb() {
-	http.HandleFunc("/", Home)
-	fs := http.FileServer(http.Dir("assets"))
-	http.Handle("/assets/", http.StripPrefix("/assets", fs))
+	http.HandleFunc("/home", Home)
+	http.HandleFunc("/", Login)
+
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	fmt.Println("Starting server at port 8888: http://localhost:8888")
 	err := http.ListenAndServe(":8888", nil)

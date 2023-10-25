@@ -87,3 +87,50 @@ body {
   font-size: 20px;
 
 }
+
+.name{
+    max-height: 100%;
+    background-color: rgb(96, 100, 112);
+    border: 3px solid #121111;
+    width: 15%; 
+    height: 100%; 
+    overflow: auto;
+    
+}
+
+
+.aname{
+  display: block;
+  margin-top: 1%;
+  margin-left: 6%;
+  margin-right: 6%;
+  height: 1.5vw;
+  width: auto;
+  font-size: 85%;
+  border: 3px solid #121111;
+  color: rgb(255, 87, 12);
+  text-decoration: none;
+  background-color: rgb(50, 54, 67);;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+}
+
+.aname:hover{ 
+  display: block;
+  margin-top: 1%;
+  margin-left: 6%;
+  margin-right: 6%;
+  height: 1.5vw;
+  width: auto;
+  font-size: 85%;
+  border: 3px solid #121111;
+  background-color: rgb(242, 113, 53);
+  color: #121111;
+  text-decoration: none;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+  }
