@@ -79,20 +79,27 @@ input{
   border: 2px solid #121111;
 }
 
-.submit{
-  height: 60px;
-  width: 110px;
+
+
+
+
+a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12%;
+  width: 18%;
   background-color: rgb(255, 87, 12);
   margin-top: 10%;
   margin-left: 80%;
   border: 2px solid #121111;
-  border-radius: 7px;
+  border-radius: 5px;
   text-decoration: none;
   color: black;
   
 }
 
-.submit:hover {
+a:hover {
   background-color: rgb(242, 113, 53);
   color: black;
   text-decoration: none;
