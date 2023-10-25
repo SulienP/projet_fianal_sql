@@ -13,5 +13,11 @@
                 {{ $employee.LastName }}
             </p>
         {{ end }}
+        <div class="addEmployee">
+            <form class="employeeForm" id="form" method="post">
+                <input type="text" name="employeeId" placeholder="Employee ID">
+                <input class="addButton" type="submit" id="add" value="Fired">
+            </form>
+        </div>
     </body>
 </html>
