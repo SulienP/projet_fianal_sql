@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compagnie</title>
+    <title>LaCochonaille</title>
     <link href="../static/css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-{{ range $i , $employee := . }}
-<p>
-    {{ $employee.FirstName }}
-</p>
-{{ end }}
-</body>
+    <body>
+        {{ range $i , $employee := . }}
+        <p>
+            {{ $employee.FirstName }}
+        </p>
+        {{ end }}
+    </body>
 </html>

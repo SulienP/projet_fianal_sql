@@ -1,12 +1,29 @@
 package sql
 
+type AllData struct {
+	EmployeeId     int
+	PostId         string
+	FirstName      string
+	LastName       string
+	Email          string
+	Password       string
+	IsPresent      bool
+	Salary         int
+	Schedule       string
+	BreaksTimes    string
+	DateHire       string
+	EndContact     string
+	DepartementsId int
+	PostName       string
+	ManagerId      int
+	ServiceId      int
+	ServiceName    string
+	StaffNumber    string
+}
+
 type Departements struct {
-	DepartementIdDepartements int
-	ServiceName   string
-	StaffNumberDepartements   int
-	ManagerIdDepartements     int
 	DepartementId int
-	ServiceNameDepartement   string
+	ServiceName   string
 	StaffNumber   int
 	ManagerId     int
 }
@@ -18,7 +35,7 @@ type Employees struct {
 	LastName    string
 	Email       string
 	Password    string
-	IsPresent   string
+	IsPresent   bool
 	Salary      int
 	Schedule    string
 	BreackTimes string
@@ -27,16 +44,12 @@ type Employees struct {
 }
 
 type Managers struct {
-	ManagerIdFromManager  int
-	EmployeeIdFromManage int
 	ManagerId  int
 	EmployeeId int
 }
 
 type Posts struct {
-	PostIdFromPosts        int
-	PostNameFromPost     string
-	ManagerIdFromPosts    int
+	PostId        int
 	DepartementId int
 	PostName      string
 	ManagerId     int

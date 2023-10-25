@@ -1,62 +1,26 @@
 package sql
 
 import (
-	"fmt"
 	"database/sql"
+	"fmt"
 	"log"
 )
 
-var db *sql.DB
-
-func init() {
-	// Open the database connection during initialization
-	var errSQLOpen error
-	db, errSQLOpen = sql.Open("sqlite3", "public/company.db")
+func getDataBase() *sql.DB {
+	db, errSQLOpen := sql.Open("sqlite3", "public/compagny.db")
 	if errSQLOpen != nil {
-		log.Fatal(errSQLOpen)
+		fmt.Println(errSQLOpen)
 	}
+
+	return db
 }
-
-func getEmails() []string {
-	rows, errQuery := db.Query("SELECT email FROM employees")
-	if errQuery != nil {
-		log.Fatal(errQuery)
-	}
-	defer rows.Close()
-
-	var emails []string
-
-	for rows.Next() {
-		var email string
-		err := rows.Scan(&email)
-		if err != nil {
-			log.Fatal(err)
-		}
-		emails = append(emails, email)
-	}
-
-	return emails
-}
-
-// type Employee struct {
-// 	EmployeeID   int
-// 	PostID       int
-// 	FirstName    string
-// 	LastName     string
-// 	Email        string
-// 	Password     string
-// 	IsPresent    bool
-// 	Salary       int
-// 	Schedule     string
-// 	BreakTimes   string
-// 	DateHire     string
-// 	EndContract  string
-// }
 
 func getAllEmployees() []Employees {
-	database, _ := sql.Open("sqlite3", "./public/compagny.db")
-	defer database.Close()
-	rows, errQuery := database.Query("SELECT * FROM employees")
+	db := getDataBase()
+
+	defer db.Close()
+
+	rows, errQuery := db.Query("SELECT * FROM employees")
 	if errQuery != nil {
 		log.Fatal(errQuery)
 	}
@@ -73,6 +37,5 @@ func getAllEmployees() []Employees {
 
 		employees = append(employees, employee)
 	}
-	fmt.Println(employees)
 	return employees
 }

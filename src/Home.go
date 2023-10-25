@@ -8,17 +8,17 @@ import (
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("templates/Home.html"))
+	tmpl := template.Must(template.ParseFiles("templates/home.html"))
 
 	// Get the list of employees
 	employees := getAllEmployees()
 
 	if r.Method == http.MethodPost {
-		idFormulaireEmployee := r.FormValue("employee")
-		idFormulaireManager := r.FormValue("employeeManager")
-		idFormulaireHire := r.FormValue("hire")
-		idFormulaireIncrease := r.FormValue("increase")
-		fmt.Println(idFormulaireEmployee, idFormulaireHire, idFormulaireManager, idFormulaireIncrease)
+		idEmployee := r.FormValue("employee")
+		idManager := r.FormValue("employeeManager")
+		idHire := r.FormValue("hire")
+		idIncrease := r.FormValue("increase")
+		fmt.Println(idEmployee, idManager, idHire, idIncrease)
 
 		// Handle form submissions here if needed
 	}
