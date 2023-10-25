@@ -15,27 +15,54 @@ func getDataBase() *sql.DB {
 	return db
 }
 
-func getEmails() []string {
+func getEmployees() []Employees {
 	db := getDataBase()
 
-	rows, errQuery := db.Query("SELECT email FROM employees")
-	if errQuery != nil {
-		log.Fatalln(errQuery)
-	}
+	defer db.Close()
 
-	defer rows.Close() // Assurez-vous de fermer les lignes après les avoir utilisées
-	var emails []string
+	rows, errQuery := db.Query("SELECT * FROM employees")
+	if errQuery != nil {
+		log.Fatal(errQuery)
+	}
+	defer rows.Close()
+
+	var employees []Employees
 
 	for rows.Next() {
-		var email string
-		err := rows.Scan(&email)
+		var employee Employees
+		err := rows.Scan(&employee.EmployeeId, &employee.PostId, &employee.FirstName, &employee.LastName, &employee.Email, &employee.Password, &employee.IsPresent, &employee.Salary, &employee.Schedule, &employee.BreackTimes, &employee.DateHire, &employee.EndContract)
 		if err != nil {
 			log.Fatal(err)
 		}
-		emails = append(emails, email) // Ajoutez chaque email à la liste des emails
-	}
 
-	return emails
+		employees = append(employees, employee)
+	}
+	return employees
+}
+
+func getColleague(nameService string) []Employees {
+	db := getDataBase()
+
+	defer db.Close()
+
+	rows, errQuery := db.Query("SELECT employees.firstName, employees.lastName FROM employees INNER JOIN departements ON employees.postId = departements.departementId WHERE departements.serviceName = '" + nameService + "'")
+	if errQuery != nil {
+		log.Fatal(errQuery)
+	}
+	defer rows.Close()
+
+	var employees []Employees
+
+	for rows.Next() {
+		var employee Employees
+		err := rows.Scan(&employee.FirstName, &employee.LastName)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		employees = append(employees, employee)
+	}
+	return employees
 }
 
 func getAllEmployees() []Employees {
