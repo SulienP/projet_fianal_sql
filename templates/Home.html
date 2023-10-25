@@ -7,6 +7,10 @@
     <link href="../static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <input id="employee" type="text" name="employee" placeholder="Select employee ID" required>
+    <input id="manager" type="text" name="manager" placeholder="Select manager ID" required>
+    <input id="hire" type="text" name="hire" placeholder="Select hire ID" required>
+    <input id="increase" type="text" name="increase" placeholder="Select increase ID" required>
     {{ range $element := .Employees }}
         {{ $element }}
     {{ end }}

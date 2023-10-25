@@ -1,7 +1,6 @@
 package sql
 
 import (
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -16,18 +15,21 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	//employees := getEmails()
 
 	if r.Method == http.MethodPost {
-		idFormulaireEmployee := r.FormValue("employee")
-		idFormulaireManager := r.FormValue("employeeManager")
-		idFormulaireHIre := r.FormValue("hire")
-		idFormulaireIncrease := r.FormValue("increase")
-		print(idFormulaireEmployee, idFormulaireHIre, idFormulaireManager, idFormulaireIncrease)
-		postId := idFormulaireEmployee[0]
-		isPresent := idFormulaireEmployee[1]
-		employees := recoveryEmployees(postId, isPresent)
-		managers := recoveryManagers(managerId, employeeId)
-		posts := recoveryPosts(postId)
-		departemnts := recoveryDepartements(id)
-		fmt.Println(employees, managers, posts, departemnts)
+		idEmployee := r.FormValue("employee")
+		idManager := r.FormValue("manager")
+		idHire := r.FormValue("hire")
+		idIncrease := r.FormValue("increase")
+		print(idEmployee, idManager, idHire, idIncrease)
+
+		/*
+			postId := idEmployee[0]
+			isPresent := idEmployee[1]
+			employees := recoveryEmployees(postId, isPresent)
+			managers := recoveryManagers(managerId, employeeId)
+			posts := recoveryPosts(postId)
+			departemnts := recoveryDepartements(id)
+			fmt.Println(employees, managers, posts, departemnts)
+		*/
 	}
 
 	err := tmpl.Execute(w, data)
