@@ -80,17 +80,21 @@ input{
 }
 
 .submit{
-  height: 40px;
-  width: 70px;
+  height: 60px;
+  width: 110px;
   background-color: rgb(255, 87, 12);
   margin-top: 10%;
   margin-left: 80%;
   border: 2px solid #121111;
   border-radius: 7px;
+  text-decoration: none;
+  color: black;
   
 }
 
 .submit:hover {
   background-color: rgb(242, 113, 53);
   color: black;
+  text-decoration: none;
 }
+
