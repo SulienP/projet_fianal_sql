@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaCochonaille</title>
+    <title>Compagny</title>
     <link href="../static/css/style.css" rel="stylesheet" type="text/css">
 </head>
-    <body>
-        {{ range $i , $employee := . }}
-        <p>
-            {{ $employee.FirstName }}
-        </p>
-        {{ end }}
-    </body>
+
+<body>
+
+    <form method="post">
+        <button name="idEmploye" type="submit" value="1">a</button>
+    </form>
+    <form class="employeeForm" id="form" method="post">
+        <input type="text" name="postId" placeholder="Post ID">
+        <input type="text" name="firstName" placeholder="First Name">
+        <input type="text" name="lastName" placeholder="Last Name">
+        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="password" placeholder="Password">
+        <input type="text" name="isPresent" placeholder="Is Present">
+        <input type="int" name="salary" placeholder="Salary">
+        <input type="text" name="shcedule" placeholder="Schedule">
+        <input type="text" name="breakTimes" placeholder="Break Times">
+        <input type="text" name="dateHire" placeholder="Date Hire">
+        <input type="text" name="endContract" placeholder="End Contract">
+        <input class="addButton" type="submit" id="add" value="Add Employee">
+    </form>
+
+    {{ range $i, $employee := . }}
+    <form method="post">
+        <button name="idEmploye" type="submit" value="{{ $i }}">{{ $employee.FirstName }}</button>
+    </form>
+
+    {{ if not (eq $employee.PostName "") }}
+    <p>Nom du poste : {{ $employee.PostName }}</p>
+    {{ end }}
+    {{ end }}
+</body>
+
 </html>
