@@ -11,7 +11,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 	// Get the list of employees
 	//currentData := getEmployees()
-	currentData := getColleague("Administration")
+	currentData := getColleague("Employees")
 
 	/*
 		if r.Method == http.MethodPost {
