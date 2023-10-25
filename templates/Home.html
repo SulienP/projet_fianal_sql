@@ -5,14 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compagny</title>
-    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/home.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
-    <form method="post">
-        <button name="idEmploye" type="submit" value="1">a</button>
+<div class="profil">
+    <div class="debut">
+        <img class="imgprofil" src="/projet_fianal_sql/pictures/icons8-utilisateur-50.png">
+        <p class="poste">Directeur</p>
+    </div>
+
+    <p class="userinfo">Anthony POUCHARD</p>
+    <a class="connect" href="login.html">Disconnect</a>
+</div>
+
+<div class="back">
+    <div class="name">
+        <p>{{ range $i , $employee := . }}
+         <form method="post">
+            <button type="submit" class="aname" id="idEmploye" name="idEmploye" value="{{ $employee.EmployeeId }}">
+                    {{ $employee.FirstName }} {{ $employee.LastName }}
+                </button>
     </form>
+        {{ end }}
+
+    </div>
+   
+</div>
+    <div class="valuToShow">
+        {{ range $i , $employee := . }}
+    
+        {{ if not (eq $employee.PostName "") }}
+        <p>Nom du poste : {{ $employee.PostName }}</p>
+        {{ end }}
+        {{ end }}
+    </div>
+ 
+<div class="addEmployee">
+  
     <form class="employeeForm" id="form" method="post">
         <input type="text" name="postId" placeholder="Post ID">
         <input type="text" name="firstName" placeholder="First Name">
@@ -27,16 +58,12 @@
         <input type="text" name="endContract" placeholder="End Contract">
         <input class="addButton" type="submit" id="add" value="Add Employee">
     </form>
-
-    {{ range $i, $employee := . }}
-    <form method="post">
-        <button name="idEmploye" type="submit" value="{{ $i }}">{{ $employee.FirstName }}</button>
-    </form>
-
-    {{ if not (eq $employee.PostName "") }}
-    <p>Nom du poste : {{ $employee.PostName }}</p>
-    {{ end }}
-    {{ end }}
+</div>
 </body>
 
+  
+</body>
+
+
+  
 </html>

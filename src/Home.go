@@ -1,6 +1,7 @@
 package sql
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -66,6 +67,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	employees := getAllEmployees()
 	if r.Method == http.MethodPost {
 		idEmploye := r.FormValue("idEmploye")
+		fmt.Println(idEmploye)
 		if idEmploye != "" {
 			id, _ := strconv.Atoi(idEmploye)
 
