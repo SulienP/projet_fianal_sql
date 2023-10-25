@@ -23,12 +23,16 @@ tmpl := template.Must(template.ParseFiles("templates/Home.html"))
 		idFormulaireManager := r.FormValue("employeeManager") 
 		idFormulaireHIre := r.FormValue("hire")
 		idFormulaireIncrease := r.FormValue("increase")
-	}
-		allEmploye := RecuperationEmployee(postid  ,  isPresent )
+		print(idFormulaireEmployee,idFormulaireHIre,idFormulaireManager,idFormulaireIncrease)
+		postId := idFormulaireEmployee[0]
+		isPresent := idFormulaireEmployee[1]
+		allEmploye := RecuperationEmployee(postId  ,  isPresent )
 	allManager := RecuperationManager( managerId, employeeId)
 	allPost := RecuperationPost( postId )
 	allDepartemnts := RecuperationDepartement(id )
-	fmt.Println(allEmploye, allManager, allPost, allDepartemnts)
+	fmt.Println(allEmploye, allManager, allPost, allDepartemntsg)
+	}
+	
 	err := tmpl.Execute(w, data)
 	if err != nil {
 		log.Fatal(err)
