@@ -1,0 +1,20 @@
+* {
+    scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #2D3547;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #536182;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #a4c0ff;
+    cursor: pointer;
+}

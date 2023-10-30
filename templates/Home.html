@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/css/home.css">
-  <title>Intranet/page/me</title>
-</head>
-<body>
-  <div class="profil">
-    <div class="debut" >
-      <img class="imgprofil" src="/projet_fianal_sql/pictures/icons8-utilisateur-50.png"> 
-      <p class="poste" >Directeur</p></div>  
-    
-    <p class="userinfo" >Anthony POUCHARD</p>
-    <a class="connect" href="login.html" >Disconnect</a>
-  </div>
-  <div class="back">
-    <div class="name" >
-      <p>{{ range $i , $employee := . }}
-        
-          <a class="aname" href="/home">{{ $employee.FirstName }} {{ $employee.LastName }}</a>
-        
-        {{ end }}</p>
-      
-    </div>
-  </div>
- 
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/css/home.css">
+        <link rel="stylesheet" href="../static/css/scrollbar.css">
+        <title>La Cochonaille</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="main">
+            <img class="imgprofil" src="static\pictures\icons8-utilisateur-50.png">
+            <div>
+                <p class="user">Anthony POUCHARD</p>
+                <p class="post">Directeur</p>
+            </div>
+            <a class="connect" href="login.html">Disconnect</a>
+        </div>
+        <div class="employees">
+            {{ range $i, $employee := . }}
+                <a class="employee" href="/home">{{ $employee.FirstName }} {{ $employee.LastName }}</a>
+            {{ end }}
+        </div>
+        <div class="content">
+            
+        </div>
+    </body>
 </html>
