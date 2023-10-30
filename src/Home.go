@@ -80,13 +80,14 @@ func Home(w http.ResponseWriter, r *http.Request) {
     }
     if r.Method == http.MethodPost {
         update_salary:= r.FormValue("new_salary")
+        fmt.Println("la")
         fmt.Println(update_salary, "avant if")
         if update_salary != ""{
             
         update_salarytoi, _:=strconv.Atoi(update_salary)
         id := 1
         fmt.Println(id,update_salarytoi,"apres ife")
-        new_salary(id,update_salarytoi)
+        newSalary(id,update_salarytoi)
 
         }
     }
