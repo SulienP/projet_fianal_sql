@@ -20,7 +20,6 @@ type EmployeeData struct {
 var employeData EmployeeData
 
 func Home(w http.ResponseWriter, r *http.Request) {	
-	    tmpl := template.Must(template.ParseFiles("templates/home.html"))
 
 	if r.Method == http.MethodPost {
 			if r.Method == http.MethodPost {
@@ -78,11 +77,14 @@ func Home(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(employeData.Manager)
         }
     }
+}
+	    tmpl := template.Must(template.ParseFiles("templates/home.html"))
 
     err := tmpl.Execute(w, employeData)
+    fmt.Println(employeData)
     if err != nil {
         log.Fatal(err)
     }
 
-}
+
 }

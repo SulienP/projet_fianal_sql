@@ -38,6 +38,7 @@
   
     </div>
     <div class="valuToShow">
+        {{ if .OneEmployee.FirstName }}
         LastName: {{ .OneEmployee.FirstName}} <br>
         FirstName: {{ .OneEmployee.LastName}}<br>
         Salary: {{ .OneEmployee.Salary}}<br>
@@ -46,6 +47,7 @@
         end date: {{.OneEmployee.EndContract}}<br>
         manager : {{ .Manager}}<br>
         departement : {{ .Departement}}<br>
+        {{ end }}
     </div>
     <div class="addEmployee">
 
