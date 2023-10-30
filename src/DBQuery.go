@@ -92,3 +92,21 @@ func getPost(employeeID int) string{
 
 	return postName
 }
+
+func new_salary(employeeId int, salary int){
+    db := getDataBase()
+    defer db.Close()
+    update_salary:="UPDATE employees SET salary =? WHERE employeeId =?"
+    stmt, err := db.Prepare(update_salary)
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer stmt.Close()
+
+    rows, err := stmt.Query(employeeId)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    defer rows.Close()
+}

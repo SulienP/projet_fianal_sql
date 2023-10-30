@@ -56,7 +56,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
             addEmployees(employeeData.PostId, employeeData.FirstName, employeeData.LastName, employeeData.Email, employeeData.Password, employeeData.IsPresent, employeeData.Salary, employeeData.Schedule, employeeData.BreackTimes, employeeData.DateHire, employeeData.EndContract)
         }
     }
-
+    }
     employeesList := getAllEmployees()
     employeData.EmployeesList = employeesList
 
@@ -78,11 +78,23 @@ func Home(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(employeData.Manager)
         }
     }
+    if r.Method == http.MethodPost {
+        update_salary:= r.FormValue("new_salary")
+        fmt.Println(update_salary, "avant if")
+        if update_salary != ""{
+            
+        update_salarytoi, _:=strconv.Atoi(update_salary)
+        id := 1
+        fmt.Println(id,update_salarytoi,"apres ife")
+        new_salary(id,update_salarytoi)
 
+        }
+    }
+    
     err := tmpl.Execute(w, employeData)
     if err != nil {
         log.Fatal(err)
     }
 
 }
-}
+
