@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +9,8 @@
     
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-            rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     </head>
-    
     <body>
         <div class="main">
             <img class="imgprofil" src="static\pictures\icons8-utilisateur-50.png">
@@ -24,68 +20,53 @@
             </div>
             <a class="connect" href="login.html">Disconnect</a>
         </div>
-
-    </div>
         <div class="employees">
-
-                {{ range $i , $employee := .EmployeesList }}
-                
+            {{ range $i , $employee := .EmployeesList }}
             <form method="post">
-                <button type="submit" class="aname" id="idEmploye" name="idEmploye" value="{{ $employee.EmployeeId }}">
+                <button type="submit" class="employee" id="idEmploye" name="idEmploye" value="{{ $employee.EmployeeId }}">
                     {{ $employee.FirstName }} {{ $employee.LastName }}
                 </button>
             </form>
             {{ end }}
-            </p>
         </div>
-  
-    </div>
-
-    {{ if .OneEmployee.FirstName }}
-    <div class="content">
-        LastName: {{ .OneEmployee.FirstName}} <br>
-        FirstName: {{ .OneEmployee.LastName}}<br>
-        Salary: {{ .OneEmployee.Salary}}<br>
-        Email: {{ .OneEmployee.Email}}<br>
-        start date: {{ .OneEmployee.DateHire}}<br>
-        end date: {{.OneEmployee.EndContract}}<br>
-        manager : {{ .Manager}}<br>
-        departement : {{ .Departement}}<br>
-        <form method="POST">
-            <input type="int" id ="new_salary"name="new_salary" placeholder="new_salary">
-            <button type="submit" id="id" name="id" value="{{.OneEmployee.EmployeeId}}">set</button>
-        </form>
-    <form method="post">
-        <button id="fired" name="fired" type="submit" value="{{ .OneEmployee.EmployeeId }}">FIRED HIMMMMMMMMMMMMMMM</button>
-    </form>
-    </div>
-    {{ end }}
-</div>
-</body>
-<footer>
-    <div class="addEmployee">
-
-        <form class="employeeForm" id="form" method="post">
-<select name="postId" required>
-    <option value="1">Comptable</option>
-    <option value="2">Hapinness Manager</option>
-    <option value="3">Publicitaire</option>
-    <option value="4">Boucher</option>
-</select>
-            <input type="text" name="firstName" placeholder="First Name"required>
-            <input type="text" name="lastName" placeholder="Last Name"required>
-            <input type="mail" name="email" placeholder="Email"required>
-            <input type="password" name="password" minlength="10" required  placeholder="Password">
-            <input type="text" name="isPresent" placeholder="Is Present"required>
-            <input type="int" name="salary" placeholder="Salary"required>
-            <input type="text" name="shcedule" placeholder="Schedule"required>
-            <input type="text" name="breakTimes" placeholder="Break Times"required>
-            <input type="text" name="dateHire" placeholder="Date Hire"required>
-            <input type="text" name="endContract" placeholder="End Contract"required>
-            <input class="addButton" type="submit" id="add" value="Add Employee"required>
-
-        </form>
-    </div>
-</footer>>
-
+        <div class="content">
+            {{ if .OneEmployee.FirstName }}
+                <h1>{{.OneEmployee.LastName}} {{.OneEmployee.FirstName}}</h1>
+                <b>Salary:</b><div class="subText">{{.OneEmployee.Salary}}$</div><br>
+                <b>Email:</b><div class="subText">{{.OneEmployee.Email}}</div><br>
+                <b>Start date:</b><div class="subText">{{.OneEmployee.DateHire}}</div><br>
+                <b>End date:</b><div class="subText">{{.OneEmployee.EndContract}}</div><br>
+                <b>Manager:</b><div class="subText">{{.Manager}}</div><br>
+                <b>Departement:</b><div class="subText">{{.Departement}}</div><br>
+                <form method="POST">
+                    <input type="int" id ="new_salary"name="new_salary" placeholder="New salary">
+                    <button type="submit" id="id" name="id" value="{{.OneEmployee.EmployeeId}}">Edit</button>
+                </form>
+                <form method="post">
+                    <button id="fired" name="fired" type="submit" value="{{ .OneEmployee.EmployeeId }}">FIRED</button>
+                </form>
+            {{ end }}
+        </div>
+        <div class="addEmployee">
+            <form class="employeeForm" id="form" method="post">
+                <select name="postId" required>
+                    <option value="1">Comptable</option>
+                    <option value="2">Hapinness Manager</option>
+                    <option value="3">Publicitaire</option>
+                    <option value="4">Boucher</option>
+                </select>
+                <input type="text" name="firstName" placeholder="First Name"required>
+                <input type="text" name="lastName" placeholder="Last Name"required>
+                <input type="mail" name="email" placeholder="Email"required>
+                <input type="password" name="password" minlength="10" required  placeholder="Password">
+                <input type="text" name="isPresent" placeholder="Is Present"required>
+                <input type="int" name="salary" placeholder="Salary"required>
+                <input type="text" name="shcedule" placeholder="Schedule"required>
+                <input type="text" name="breakTimes" placeholder="Break Times"required>
+                <input type="text" name="dateHire" placeholder="Date Hire"required>
+                <input type="text" name="endContract" placeholder="End Contract"required>
+                <input class="addButton" type="submit" id="add" value="Add Employee"required>
+            </form>
+        </div>
+    </body>
 </html>
