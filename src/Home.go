@@ -63,7 +63,6 @@ func Home(w http.ResponseWriter, r *http.Request) {
     if r.Method == http.MethodPost {
         idEmploye := r.FormValue("idEmploye")
         id := 0
-		fmt.Println(idEmploye)
         if idEmploye != "" {
             id, _ = strconv.Atoi(idEmploye)
             oneEmployee := getEmployeData(id)
@@ -75,10 +74,12 @@ func Home(w http.ResponseWriter, r *http.Request) {
             employeData.PostName = namePost
 			employeData.Manager = getManager
 			employeData.Departement = getDepartement
-			fmt.Println(employeData.Manager)
         }
     }
-
+	toFired := r.FormValue("fired")
+	if toFired != "" {
+		fired(toFired)
+	}
     err := tmpl.Execute(w, employeData)
     if err != nil {
         log.Fatal(err)

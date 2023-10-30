@@ -115,3 +115,21 @@ func getPost(employeeID int) string{
 	fmt.Println(postName)
 	return postName
 }
+
+
+func fired(employeeId string) {
+	db := getDataBase()
+
+	defer db.Close()
+
+	stmt, err := db.Prepare("DELETE FROM employees WHERE employeeId = ?")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(employeeId)
+	if err != nil {
+		log.Fatal(err)
+	}
+}

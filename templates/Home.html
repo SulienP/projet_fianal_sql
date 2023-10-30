@@ -46,6 +46,9 @@
         end date: {{.OneEmployee.EndContract}}<br>
         manager : {{ .Manager}}<br>
         departement : {{ .Departement}}<br>
+        <form method="post">
+            <button id="fired" name="fired" type="submit" value="{{ .OneEmployee.EmployeeId }}">
+        </form>
     </div>
     <div class="addEmployee">
 
@@ -62,6 +65,7 @@
             <input type="text" name="dateHire" placeholder="Date Hire">
             <input type="text" name="endContract" placeholder="End Contract">
             <input class="addButton" type="submit" id="add" value="Add Employee">
+
         </form>
     </div>
 </body>
