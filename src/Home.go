@@ -85,9 +85,10 @@ func Home(w http.ResponseWriter, r *http.Request) {
         if update_salary != ""{
             
         update_salarytoi, _:=strconv.Atoi(update_salary)
-        id := 1
-        fmt.Println(id,update_salarytoi,"apres ife")
-        newSalary(id,update_salarytoi)
+        id := r.FormValue("id")
+        idtoi,_:=strconv.Atoi(id)
+        fmt.Println(idtoi,update_salarytoi,"apres ife")
+        newSalary(idtoi,update_salarytoi)
 
         }
     }
