@@ -37,6 +37,7 @@
         </div>
   
     </div>
+    {{ if .OneEmployee.FirstName }}
     <div class="valuToShow">
         LastName: {{ .OneEmployee.FirstName}} <br>
         FirstName: {{ .OneEmployee.LastName}}<br>
@@ -47,9 +48,10 @@
         manager : {{ .Manager}}<br>
         departement : {{ .Departement}}<br>
         <form method="post">
-            <button id="fired" name="fired" type="submit" value="{{ .OneEmployee.EmployeeId }}">
+            <button id="fired" name="fired" type="submit" value="{{ .OneEmployee.EmployeeId }}" > FIRED HIMMMMMMMMMMMMMMM </button>
         </form>
     </div>
+    {{ end }}
     <div class="addEmployee">
 
         <form class="employeeForm" id="form" method="post">

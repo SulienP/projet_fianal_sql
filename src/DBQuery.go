@@ -43,7 +43,7 @@ func getAllEmployees() []Employees {
 
 	defer db.Close()
 
-	rows, errQuery := db.Query("SELECT * FROM employees")
+	rows, errQuery := db.Query("SELECT * FROM employees ORDER BY employees.lastName ASC")
 	if errQuery != nil {
 		log.Fatal(errQuery)
 	}
