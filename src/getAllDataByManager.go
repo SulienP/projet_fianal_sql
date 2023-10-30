@@ -1,11 +1,13 @@
 // SELECT
-//     CASE
-//         WHEN Employee.employeeId < 8 THEN 'Manager 1'
-//         WHEN Employee.employeeId BETWEEN 10 AND 12 THEN 'Manager 2'
-//         ELSE 'Manager 3'
-//     END AS Manager,
-//     Employee.FirstName,
-//     Employee.LastName
+//
+//	CASE
+//	    WHEN Employee.employeeId < 8 THEN 'Manager 1'
+//	    WHEN Employee.employeeId BETWEEN 10 AND 12 THEN 'Manager 2'
+//	    ELSE 'Manager 3'
+//	END AS Manager,
+//	Employee.FirstName,
+//	Employee.LastName
+//
 // FROM employees AS Employee
 // LEFT JOIN managers AS m ON Employee.employeeId = m.managerId
 // ORDER BY Manager;
@@ -15,7 +17,7 @@ import (
 	"log"
 )
 
-func getAllDataByManager() ([]Employees) {
+func getAllDataByManager() []Employees {
 	db := getDataBase()
 
 	defer db.Close()

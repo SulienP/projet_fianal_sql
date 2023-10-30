@@ -47,6 +47,10 @@
         end date: {{.OneEmployee.EndContract}}<br>
         manager : {{ .Manager}}<br>
         departement : {{ .Departement}}<br>
+        <form method="POST">
+            <input type="int" id ="new_salary"name="new_salary" placeholder="new_salary">
+            <button type="submit" id="id" name="id" value="{{.OneEmployee.EmployeeId}}">set</button>
+        </form>
         <form method="post">
             <button id="fired" name="fired" type="submit" value="{{ .OneEmployee.EmployeeId }}" > FIRED HIMMMMMMMMMMMMMMM </button>
         </form>

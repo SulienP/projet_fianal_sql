@@ -56,7 +56,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
             addEmployees(employeeData.PostId, employeeData.FirstName, employeeData.LastName, employeeData.Email, employeeData.Password, employeeData.IsPresent, employeeData.Salary, employeeData.Schedule, employeeData.BreackTimes, employeeData.DateHire, employeeData.EndContract)
         }
     }
-	}
+}
     employeesList := getAllEmployees()
     employeData.EmployeesList = employeesList
 
@@ -76,7 +76,21 @@ func Home(w http.ResponseWriter, r *http.Request) {
 			employeData.Departement = getDepartement
         }
     }
-	toFired := r.FormValue("fired")
+    if r.Method == http.MethodPost {
+        update_salary:= r.FormValue("new_salary")
+        fmt.Println("la")
+        fmt.Println(update_salary, "avant if")
+        if update_salary != ""{
+            
+        update_salarytoi, _:=strconv.Atoi(update_salary)
+        id := r.FormValue("id")
+        idtoi,_:=strconv.Atoi(id)
+        fmt.Println(idtoi,update_salarytoi,"apres ife")
+        newSalary(idtoi,update_salarytoi)
+
+        }
+    }
+    toFired := r.FormValue("fired")
 	if toFired != "" {
 		fired(toFired)
 	}
