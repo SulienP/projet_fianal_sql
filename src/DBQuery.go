@@ -146,3 +146,101 @@ func newSalary(employeeID int, newSalary int) {
 		log.Fatal(err)
 	}
 }
+
+
+func getAllDataByManager() []Employees {
+	db := getDataBase()
+
+	defer db.Close()
+
+	rows, errQuery := db.Query("SELECT CASE WHEN employees.employeeId < 8 THEN 'Manager 1' WHEN employees.employeeId BETWEEN 10 AND 12 THEN 'Manager 2' ELSE 'Manager 3' END AS Manager, employees.* FROM employees LEFT JOIN managers AS M ON employees.employeeId = M.managerId ORDER BY Manager;")
+	if errQuery != nil {
+		log.Fatal(errQuery)
+	}
+	defer rows.Close()
+
+	var employees []Employees
+
+	for rows.Next() {
+		var employee Employees
+		err := rows.Scan(&employee.EmployeeId, &employee.PostId, &employee.FirstName, &employee.LastName, &employee.Email, &employee.Password, &employee.IsPresent, &employee.Salary, &employee.Schedule, &employee.BreackTimes, &employee.DateHire, &employee.EndContract)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		employees = append(employees, employee)
+	}
+	return employees
+}
+
+
+func getDepartementNames(employeeID int) (string) {
+	db := getDataBase()
+	defer db.Close()
+
+	query := `SELECT posts.postName, departements.serviceName FROM posts, departements  INNER JOIN employees ON posts.postId = employees.postId WHERE employees.employeeId = ?`
+
+	var postName, serviceName string
+
+	err := db.QueryRow(query, employeeID).Scan(&postName, &serviceName)
+	if err != nil {
+		log.Printf("Erreur lors de la récupération des données de département : %v", err)
+		
+	}
+
+	return postName
+}
+
+func getEmployeData(id int) (Employees) {
+	db := getDataBase()
+	defer db.Close()
+
+	var employee Employees 
+
+	err := db.QueryRow("SELECT * FROM employees WHERE employeeId = ?", id).Scan(
+		&employee.EmployeeId,
+		&employee.PostId,
+		&employee.FirstName,
+		&employee.LastName,
+		&employee.Email,
+		&employee.Password,
+		&employee.IsPresent,
+		&employee.Salary,
+		&employee.Schedule,
+		&employee.BreackTimes,
+		&employee.DateHire,
+		&employee.EndContract,
+	)
+	if err != nil {
+		log.Fatal(err)
+		return Employees{}
+	}
+
+	return employee
+}
+
+
+func getManagers(id int) string {
+    db := getDataBase()
+    defer db.Close()
+
+    query := `
+        SELECT
+            CASE
+                WHEN employees.employeeId < 8 THEN 'Manager 1'
+                WHEN employees.employeeId BETWEEN 10 AND 12 THEN 'Manager 2'
+                ELSE 'Manager 3'
+            END AS Manager
+        FROM employees
+        WHERE employeeId = ?;
+    `
+
+    var manager string
+
+    err := db.QueryRow(query, id).Scan(&manager)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    return manager
+}

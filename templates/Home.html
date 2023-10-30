@@ -61,11 +61,17 @@
     </div>
     {{ end }}
 </div>
-
+</body>
+<footer>
     <div class="addEmployee">
 
         <form class="employeeForm" id="form" method="post">
-            <input type="int" name="postId" placeholder="Post ID" required>
+<select name="postId" required>
+    <option value="1">Comptable</option>
+    <option value="2">Hapinness Manager</option>
+    <option value="3">Publicitaire</option>
+    <option value="4">Boucher</option>
+</select>
             <input type="text" name="firstName" placeholder="First Name"required>
             <input type="text" name="lastName" placeholder="Last Name"required>
             <input type="mail" name="email" placeholder="Email"required>
@@ -80,7 +86,6 @@
 
         </form>
     </div>
-
-</body>
+</footer>>
 
 </html>

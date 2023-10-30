@@ -84,6 +84,7 @@ body {
 .employee {
   display: block;
   padding: 10px 100px 10px 25px;
+  margin-bottom: 5%;
   font-size: 1em;
   color: #e6eeff;
   text-decoration: none;
@@ -95,6 +96,12 @@ body {
   background-color: #2D3547;
   color: #ff9500;
 }
-.content{
+
+.content {
   padding-top: 2%;
+}
+
+.addEmployee {
+  margin: top 5%;
+  ;
 }
