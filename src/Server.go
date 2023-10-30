@@ -16,7 +16,7 @@ func ServerWeb() {
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	fmt.Println("Starting server at port 8888: http://localhost:8888")
-	err := http.ListenAndServe(":8888", nil)
+	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
