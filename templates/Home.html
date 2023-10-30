@@ -37,7 +37,9 @@
         </div>
   
     </div>
+    ghjk
     <div class="valuToShow">
+        {{ if .OneEmployee.FirstName }}
         LastName: {{ .OneEmployee.FirstName}} <br>
         FirstName: {{ .OneEmployee.LastName}}<br>
         Salary: {{ .OneEmployee.Salary}}<br>
@@ -46,14 +48,16 @@
         end date: {{.OneEmployee.EndContract}}<br>
         manager : {{ .Manager}}<br>
         departement : {{ .Departement}}<br>
-    </div>
-    <div class="addEmployee">
+         <input type="text" name="employeeId" placeholder="Employee ID">
+        <input class="addButton" type="submit" id="Fired" value="Fired">
+        {{ end }}
+     <div class="addEmployee">
 
         <form class="employeeForm" id="form" method="post">
-            <input type="text" name="postId" placeholder="Post ID">
+            <input type="int" name="postId" placeholder="Post ID">
             <input type="text" name="firstName" placeholder="First Name">
             <input type="text" name="lastName" placeholder="Last Name">
-            <input type="text" name="email" placeholder="Email">
+            <input type="mail" name="email" placeholder="Email">
             <input type="text" name="password" placeholder="Password">
             <input type="text" name="isPresent" placeholder="Is Present">
             <input type="int" name="salary" placeholder="Salary">
@@ -63,7 +67,5 @@
             <input type="text" name="endContract" placeholder="End Contract">
             <input class="addButton" type="submit" id="add" value="Add Employee">
         </form>
-    </div>
-</body>
-
+    </body>
 </html>

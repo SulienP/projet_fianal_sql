@@ -15,8 +15,8 @@ func ServerWeb() {
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	fmt.Println("Starting server at port 8080: http://localhost:8080")
-	err := http.ListenAndServe(":8080", nil)
+	fmt.Println("Starting server at port 8888: http://localhost:8888")
+	err := http.ListenAndServe(":8888", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
