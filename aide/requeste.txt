@@ -1,0 +1,6 @@
+getColleague():
+SELECT employees.firstName, employees.lastName
+FROM employees
+INNER JOIN departements ON employees.postId = departements.departementId
+WHERE departements.serviceName = 'Employees'
+

@@ -1,0 +1,107 @@
+body {
+  background-color: #1B202B;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  height: 75px;
+  color: #fff;
+  border-bottom: 2px solid #2D3547;
+}
+
+.main img {
+  width: 50px;
+  height: 50px;
+  margin: auto 20px auto 15px;
+}
+
+.main .user {
+  width: 500px;
+  position: relative;
+  top: 8px;
+}
+
+.main .post {
+  font-size: 0.85em;
+  color: #7487b5;
+  position: relative;
+  bottom: 8px;
+}
+
+.main a {
+  margin-left: 1215px;
+  color: #fff;
+  border: 2px solid #536182;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.main a:hover {
+  color: #ff9500;
+  border: 2px solid #ff9500;
+}
+
+.connect {
+  margin-left: 10%;
+  bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.content {
+  width: 50vw;
+  height: 100%;
+  margin-left: 25vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #212633;
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.employees {
+  position: fixed;
+  width: auto;
+  height: 100vh;
+  overflow: auto;
+  margin-top: 75px;
+}
+
+.employee {
+  display: block;
+  padding: 10px 100px 10px 25px;
+  margin-bottom: 5%;
+  font-size: 1em;
+  color: #e6eeff;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.employee:hover {
+  background-color: #2D3547;
+  color: #ff9500;
+}
+
+.content {
+  padding-top: 2%;
+}
+
+.addEmployee {
+  margin: top 5%;
+  ;
+}
