@@ -1,8 +1,7 @@
 package sql
 
 import (
-	// "fmt"
-	"fmt"
+
 	"html/template"
 	"log"
 	"net/http"
@@ -68,7 +67,6 @@ func Home(w http.ResponseWriter, r *http.Request) {
             oneEmployee := getEmployeData(id)
 			getManager := getManagers((id))
 			getDepartement := getDepartementNames(id)
-			fmt.Println(getManager)
             namePost := getPost(id)
             employeData.OneEmployee = oneEmployee
             employeData.PostName = namePost
@@ -78,14 +76,11 @@ func Home(w http.ResponseWriter, r *http.Request) {
     }
     if r.Method == http.MethodPost {
         update_salary:= r.FormValue("new_salary")
-        fmt.Println("la")
-        fmt.Println(update_salary, "avant if")
         if update_salary != ""{
             
         update_salarytoi, _:=strconv.Atoi(update_salary)
         id := r.FormValue("id")
         idtoi,_:=strconv.Atoi(id)
-        fmt.Println(idtoi,update_salarytoi,"apres ife")
         newSalary(idtoi,update_salarytoi)
 
         }

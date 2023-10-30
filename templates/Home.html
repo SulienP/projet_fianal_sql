@@ -51,26 +51,26 @@
             <input type="int" id ="new_salary"name="new_salary" placeholder="new_salary">
             <button type="submit" id="id" name="id" value="{{.OneEmployee.EmployeeId}}">set</button>
         </form>
-        <form method="post">
-            <button id="fired" name="fired" type="submit" value="{{ .OneEmployee.EmployeeId }}" > FIRED HIMMMMMMMMMMMMMMM </button>
-        </form>
+    <form method="post">
+        <button id="fired" name="fired" type="submit" value="{{ .OneEmployee.EmployeeId }}">FIRED HIMMMMMMMMMMMMMMM</button>
+    </form>
     </div>
     {{ end }}
     <div class="addEmployee">
 
         <form class="employeeForm" id="form" method="post">
-            <input type="int" name="postId" placeholder="Post ID">
-            <input type="text" name="firstName" placeholder="First Name">
-            <input type="text" name="lastName" placeholder="Last Name">
-            <input type="mail" name="email" placeholder="Email">
-            <input type="text" name="password" placeholder="Password">
-            <input type="text" name="isPresent" placeholder="Is Present">
-            <input type="int" name="salary" placeholder="Salary">
-            <input type="text" name="shcedule" placeholder="Schedule">
-            <input type="text" name="breakTimes" placeholder="Break Times">
-            <input type="text" name="dateHire" placeholder="Date Hire">
-            <input type="text" name="endContract" placeholder="End Contract">
-            <input class="addButton" type="submit" id="add" value="Add Employee">
+            <input type="int" name="postId" placeholder="Post ID" required>
+            <input type="text" name="firstName" placeholder="First Name"required>
+            <input type="text" name="lastName" placeholder="Last Name"required>
+            <input type="mail" name="email" placeholder="Email"required>
+            <input type="password" name="password" minlength="10" required  placeholder="Password">
+            <input type="text" name="isPresent" placeholder="Is Present"required>
+            <input type="int" name="salary" placeholder="Salary"required>
+            <input type="text" name="shcedule" placeholder="Schedule"required>
+            <input type="text" name="breakTimes" placeholder="Break Times"required>
+            <input type="text" name="dateHire" placeholder="Date Hire"required>
+            <input type="text" name="endContract" placeholder="End Contract"required>
+            <input class="addButton" type="submit" id="add" value="Add Employee"required>
 
         </form>
     </div>
