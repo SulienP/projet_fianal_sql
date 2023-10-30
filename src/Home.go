@@ -20,7 +20,6 @@ type EmployeeData struct {
 var employeData EmployeeData
 
 func Home(w http.ResponseWriter, r *http.Request) {	
-	    tmpl := template.Must(template.ParseFiles("templates/home.html"))
 
 	if r.Method == http.MethodPost {
 			if r.Method == http.MethodPost {
@@ -56,8 +55,10 @@ func Home(w http.ResponseWriter, r *http.Request) {
             addEmployees(employeeData.PostId, employeeData.FirstName, employeeData.LastName, employeeData.Email, employeeData.Password, employeeData.IsPresent, employeeData.Salary, employeeData.Schedule, employeeData.BreackTimes, employeeData.DateHire, employeeData.EndContract)
         }
     }
+}
 
     employeesList := getAllEmployees()
+    fmt.Println(employeesList)
     employeData.EmployeesList = employeesList
 
     if r.Method == http.MethodPost {
@@ -67,9 +68,12 @@ func Home(w http.ResponseWriter, r *http.Request) {
         if idEmploye != "" {
             id, _ = strconv.Atoi(idEmploye)
             oneEmployee := getEmployeData(id)
+            if r.Method == http.MethodPost {
+		        idFired := r.FormValue("Fired")
+		        fired(idFired)
+	        }
 			getManager := getManagers((id))
 			getDepartement := getDepartementNames(id)
-			fmt.Println(getManager)
             namePost := getPost(id)
             employeData.OneEmployee = oneEmployee
             employeData.PostName = namePost
@@ -79,10 +83,13 @@ func Home(w http.ResponseWriter, r *http.Request) {
         }
     }
 
+	    tmpl := template.Must(template.ParseFiles("templates/home.html"))
+
     err := tmpl.Execute(w, employeData)
+    fmt.Println(employeData)
     if err != nil {
         log.Fatal(err)
     }
 
-}
+
 }

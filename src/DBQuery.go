@@ -41,6 +41,7 @@ func getAllEmployees() []Employees {
 }
 
 
+
 func addEmployees(postId int, firstName string, lastName string, email string, password string, isPresent string, salary int, schedule string, breakTimes string, dateHire string, endContract string) {
     fmt.Println("ici", postId, firstName, lastName, email, password, isPresent, salary, schedule, breakTimes, dateHire, endContract)
     
@@ -91,4 +92,21 @@ func getPost(employeeID int) string{
     }
 
 	return postName
+}
+
+func fired(employeeId string) {
+	db := getDataBase()
+
+	defer db.Close()
+
+	stmt, err := db.Prepare("DELETE FROM employees WHERE employeeId = ?")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(employeeId)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
