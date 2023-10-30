@@ -15,6 +15,29 @@ func getDataBase() *sql.DB {
 	return db
 }
 
+func getEmails() []string {
+	db := getDataBase()
+
+	rows, errQuery := db.Query("SELECT email FROM employees")
+	if errQuery != nil {
+		log.Fatalln(errQuery)
+	}
+
+	defer rows.Close() // Assurez-vous de fermer les lignes après les avoir utilisées
+	var emails []string
+
+	for rows.Next() {
+		var email string
+		err := rows.Scan(&email)
+		if err != nil {
+			log.Fatal(err)
+		}
+		emails = append(emails, email) // Ajoutez chaque email à la liste des emails
+	}
+
+	return emails
+}
+
 func getAllEmployees() []Employees {
 	db := getDataBase()
 
@@ -42,88 +65,53 @@ func getAllEmployees() []Employees {
 
 
 func addEmployees(postId int, firstName string, lastName string, email string, password string, isPresent string, salary int, schedule string, breakTimes string, dateHire string, endContract string) {
-	fmt.Println("ici", postId, firstName, lastName, email, password, isPresent, salary, schedule, breakTimes, dateHire, endContract)
+    fmt.Println("ici", postId, firstName, lastName, email, password, isPresent, salary, schedule, breakTimes, dateHire, endContract)
+    
+    db := getDataBase()
+    defer db.Close()
 
-	db := getDataBase()
-	defer db.Close()
+    insertStatement := "INSERT INTO employees (postId, firstName, lastName, email, password, isPresent, salary, schedule, breakTimes, dateHire, endContract) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    stmt, err := db.Prepare(insertStatement)
+    fmt.Println(insertStatement)
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer stmt.Close()
 
-	insertStatement := "INSERT INTO employees (postId, firstName, lastName, email, password, isPresent, salary, schedule, breakTimes, dateHire, endContract) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-	stmt, err := db.Prepare(insertStatement)
-	fmt.Println(insertStatement)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer stmt.Close()
-
-	_, err = stmt.Exec(postId, firstName, lastName, email, password, isPresent, salary, schedule, breakTimes, dateHire, endContract)
-	if err != nil {
-		log.Fatal(err)
-	}
+    _, err = stmt.Exec(postId, firstName, lastName, email, password, isPresent, salary, schedule, breakTimes, dateHire, endContract)
+    if err != nil {
+        log.Fatal(err)
+    }
 }
+        var postName string
 
-var postName string
+func getPost(employeeID int) string{
+    db := getDataBase()
+    defer db.Close()
 
-func getPost(employeeID int) string {
-	db := getDataBase()
-	defer db.Close()
+    selectStatement := "SELECT posts.postName FROM posts  INNER JOIN employees ON posts.postId = employees.postId WHERE employees.employeeId = ?"
+    stmt, err := db.Prepare(selectStatement)
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer stmt.Close()
 
-	selectStatement := "SELECT posts.postName FROM posts  INNER JOIN employees ON posts.postId = employees.postId WHERE employees.employeeId = ?"
-	stmt, err := db.Prepare(selectStatement)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer stmt.Close()
+    rows, err := stmt.Query(employeeID)
+    if err != nil {
+        log.Fatal(err)
+    }
 
-	rows, err := stmt.Query(employeeID)
-	if err != nil {
-		log.Fatal(err)
-	}
+    defer rows.Close()
 
-	defer rows.Close()
-
-	for rows.Next() {
-		if err := rows.Scan(&postName); err != nil {
-			log.Fatal(err)
-		}
-	}
+    for rows.Next() {
+        if err := rows.Scan(&postName); err != nil {
+            log.Fatal(err)
+        }
+    }
 
     if err := rows.Err(); err != nil {
         log.Fatal(err)
     }
-
+	fmt.Println(postName)
 	return postName
-}
-
-func fired(employeeId string) {
-	db := getDataBase()
-
-	defer db.Close()
-
-	stmt, err := db.Prepare("DELETE FROM employees WHERE employeeId = ?")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer stmt.Close()
-
-	_, err = stmt.Exec(employeeId)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-func fired(employeeId string) {
-	db := getDataBase()
-
-	defer db.Close()
-
-	stmt, err := db.Prepare("DELETE FROM employees WHERE employeeId = ?")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer stmt.Close()
-
-	_, err = stmt.Exec(employeeId)
-	if err != nil {
-		log.Fatal(err)
-	}
 }
